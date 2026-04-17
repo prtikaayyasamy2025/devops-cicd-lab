@@ -1,0 +1,17 @@
+const request = require('supertest');
+const app = require('../app');
+
+test('Home route', async () => {
+  const res = await request(app).get('/');
+  expect(res.text).toBe('Hello DevOps!');
+});
+
+test('Health route', async () => {
+  const res = await request(app).get('/health');
+  expect(res.text).toBe('OK');
+});
+
+test('Health status code', async () => {
+  const res = await request(app).get('/health');
+  expect(res.statusCode).toBe(200);
+});
